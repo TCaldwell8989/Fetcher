@@ -1,4 +1,4 @@
-package com.tyler.dogfetcher;
+package com.tyler.fetcher;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class WeatherActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Weather Activity";
     private static final String EXTRA_GOOGLE_ACCOUNT =
@@ -36,7 +36,7 @@ public class WeatherActivity extends AppCompatActivity {
     String key;
 
     public static Intent newIntent(Context packageContext, GoogleSignInAccount account) {
-        Intent intent = new Intent(packageContext, WeatherActivity.class);
+        Intent intent = new Intent(packageContext, MainActivity.class);
         intent.putExtra(EXTRA_GOOGLE_ACCOUNT, account);
         return intent;
     }

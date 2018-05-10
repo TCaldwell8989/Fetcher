@@ -1,4 +1,4 @@
-package com.tyler.dogfetcher;
+package com.tyler.fetcher;
 
 import android.app.Instrumentation;
 import android.content.Context;
@@ -26,12 +26,12 @@ public class InstrumentedTest {
     public ActivityTestRule<SignInActivity> mActivityTestRule = new ActivityTestRule<SignInActivity>(SignInActivity.class);
 
     @Rule
-    public ActivityTestRule<WeatherActivity> mWeatherActivityTestRule = new ActivityTestRule<>(WeatherActivity.class);
+    public ActivityTestRule<MainActivity> mWeatherActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     private SignInActivity mSignInActivity = null;
-    private WeatherActivity mWeatherActivity = null;
+    private MainActivity mWeatherActivity = null;
 
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(WeatherActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
 
     @Before
     public void setUp() throws Exception {

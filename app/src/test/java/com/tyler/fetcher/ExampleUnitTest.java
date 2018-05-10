@@ -1,4 +1,4 @@
-package com.tyler.dogfetcher;
+package com.tyler.fetcher;
 
 import org.junit.Test;
 

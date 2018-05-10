@@ -1,4 +1,4 @@
-package com.tyler.dogfetcher;
+package com.tyler.fetcher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,9 +77,9 @@ public class SignInActivity extends AppCompatActivity {
             Log.d(TAG, "Signed in with " + account.getDisplayName());
             //User already signed in. Hide sign in TextView and Button
             mSignInButton.setVisibility(View.INVISIBLE);
-            //Intent intent = WeatherActivity.newIntent(this, account);
+            //Intent intent = MainActivity.newIntent(this, account);
             //startActivity(intent);
-            startActivity(new Intent(WeatherActivity.newIntent(this, account)));
+            startActivity(new Intent(MainActivity.newIntent(this, account)));
         } else {
             //User not signed in. Show sign in TextView and Button
             Log.d(TAG, "Not signed in");
