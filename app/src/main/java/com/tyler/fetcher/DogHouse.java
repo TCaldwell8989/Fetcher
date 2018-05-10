@@ -54,36 +54,36 @@ public class DogHouse {
     }
 
     public List<DogPark> getDogPark() {
-        List<DogPark> inspirations = new ArrayList<>();
+        List<DogPark> dogParks = new ArrayList<>();
         DbCursorWrapper cursor = queryDogParks(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                inspirations.add(cursor.getDogPark());
+                dogParks.add(cursor.getDogPark());
                 cursor.moveToNext();
             }
         } finally {
             cursor.close();
         }
-        return inspirations;
+        return dogParks;
     }
 
     public List<DogPark> getDogParks(String where, String[] whereArgs) {
-        List<DogPark> inspirations = new ArrayList<>();
+        List<DogPark> dogParks = new ArrayList<>();
         DbCursorWrapper cursor = queryDogParks(where, whereArgs);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                inspirations.add(cursor.getDogPark());
+                dogParks.add(cursor.getDogPark());
                 cursor.moveToNext();
             }
         } finally {
             cursor.close();
         }
-        return inspirations;
+        return dogParks;
     }
 
-    public DogPark getInspiration(UUID id) {
+    public DogPark getDogPark(UUID id) {
         DbCursorWrapper cursor = queryDogParks(
                 DogParkTable.Cols.UUID + " = ?",
                 new String[] { id.toString() });

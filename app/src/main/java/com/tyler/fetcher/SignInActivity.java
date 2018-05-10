@@ -78,15 +78,14 @@ public class SignInActivity extends AppCompatActivity {
             Log.d(TAG, "Signed in with " + account.getDisplayName());
             //User already signed in. Hide sign in TextView and Button
             mSignInButton.setVisibility(View.INVISIBLE);
-            //Intent intent = MainActivity.newIntent(this, account);
-            //startActivity(intent);
-            DogPark park = new DogPark();
-            DogHouse.get(getApplicationContext()).addDogPark(park);
-            startActivity(new Intent(MainActivity.newIntent(this, account, park.getId())));
+            String username = account.getDisplayName();
+            String email = account.getEmail();
+            Intent intent = DogParkListActivity.newIntent(this, username, email);
+            startActivity(intent);
         } else {
             //User not signed in. Show sign in TextView and Button
             Log.d(TAG, "Not signed in");
-            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Go Fetch", Toast.LENGTH_LONG).show();
             mSignInButton.setVisibility(View.VISIBLE);
         }
     }

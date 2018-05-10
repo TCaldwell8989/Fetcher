@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Fetcher</string>
     <string name="search">Search</string>
+    <string name="hold_to_edit">Click and Hold to edit</string>
+    <string name="delete">Delete Dog Place</string>
+    <string name="are_you_sure">Are you sure?</string>
 </resources>

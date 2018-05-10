@@ -26,12 +26,12 @@ public class InstrumentedTest {
     public ActivityTestRule<SignInActivity> mActivityTestRule = new ActivityTestRule<SignInActivity>(SignInActivity.class);
 
     @Rule
-    public ActivityTestRule<MainActivity> mWeatherActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<EntryFormActivity> mWeatherActivityTestRule = new ActivityTestRule<>(EntryFormActivity.class);
 
     private SignInActivity mSignInActivity = null;
-    private MainActivity mWeatherActivity = null;
+    private EntryFormActivity mWeatherActivity = null;
 
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(EntryFormActivity.class.getName(),null,false);
 
     @Before
     public void setUp() throws Exception {

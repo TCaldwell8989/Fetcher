@@ -1,6 +1,8 @@
 package com.tyler.fetcher;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,17 +10,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 import java.util.UUID;
 
 
-public class MainActivity extends AppCompatActivity {
+public class EntryFormActivity extends AppCompatActivity {
 
     private static final String TAG = "Main Activity";
     private static final String EXTRA_GOOGLE_ACCOUNT =
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private RatingBar mRating;
 
     public static Intent newIntent(Context packageContext, GoogleSignInAccount account, UUID dogParkId) {
-        Intent intent = new Intent(packageContext, MainActivity.class);
+        Intent intent = new Intent(packageContext, EntryFormActivity.class);
         intent.putExtra(EXTRA_GOOGLE_ACCOUNT, account);
         intent.putExtra(EXTRA_DOGPARK_ID, dogParkId);
         return intent;
@@ -46,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         UUID parkId = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_DOGPARK_ID);
-        GoogleSignInAccount account = (GoogleSignInAccount) getIntent()
-                .getSerializableExtra(EXTRA_GOOGLE_ACCOUNT);
+        String userName = getIntent()
+                .getStringExtra(EXTRA_GOOGLE_ACCOUNT);
 
-        mDogPark = DogHouse.get(getApplicationContext()).getInspiration(parkId);
+        mDogPark = DogHouse.get(getApplicationContext()).getDogPark(parkId);
 
         //Get references to View components
         mNameET = (EditText) findViewById(R.id.name_et);
@@ -120,25 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.new_fetch_spot:
-                //TODO
-                break;
-            case R.id.search:
-                //TODO
-                break;
-        }
-        return true;
-    }
 
     @Override
     public void onPause() {

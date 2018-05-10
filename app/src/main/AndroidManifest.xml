@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tyler.fetcher.MainActivity"/>
+        <activity android:name="com.tyler.fetcher.EntryFormActivity"/>
+        <activity android:name=".DogParkListActivity"/>
         <activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
