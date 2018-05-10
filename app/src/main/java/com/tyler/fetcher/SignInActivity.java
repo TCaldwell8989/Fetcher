@@ -1,5 +1,6 @@
 package com.tyler.fetcher;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -79,7 +80,9 @@ public class SignInActivity extends AppCompatActivity {
             mSignInButton.setVisibility(View.INVISIBLE);
             //Intent intent = MainActivity.newIntent(this, account);
             //startActivity(intent);
-            startActivity(new Intent(MainActivity.newIntent(this, account)));
+            DogPark park = new DogPark();
+            DogHouse.get(getApplicationContext()).addDogPark(park);
+            startActivity(new Intent(MainActivity.newIntent(this, account, park.getId())));
         } else {
             //User not signed in. Show sign in TextView and Button
             Log.d(TAG, "Not signed in");

@@ -9,7 +9,7 @@ public class DogPark {
     private String name;
     private String location;
     private String note;
-    private int rating;
+    private float rating;
 
     public DogPark() {
         this(UUID.randomUUID());
@@ -48,11 +48,11 @@ public class DogPark {
         this.note = note;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

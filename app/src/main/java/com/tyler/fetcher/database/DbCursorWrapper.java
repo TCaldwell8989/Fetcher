@@ -7,8 +7,8 @@ import com.tyler.fetcher.database.DbSchema.DogParkTable;
 
 import java.util.UUID;
 
-public class CursorWrapper extends android.database.CursorWrapper {
-    public CursorWrapper(Cursor cursor) {
+public class DbCursorWrapper extends android.database.CursorWrapper {
+    public DbCursorWrapper(Cursor cursor) {
         super(cursor);
     }
 
