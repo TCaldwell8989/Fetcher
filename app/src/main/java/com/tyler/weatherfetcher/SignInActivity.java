@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -78,20 +74,21 @@ public class SignInActivity extends AppCompatActivity {
 
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
-            Log.d(TAG, "Already signed in with " + account);
+            Log.d(TAG, "Signed in with " + account.getDisplayName());
             //User already signed in. Hide sign in TextView and Button
             mSignInButton.setVisibility(View.INVISIBLE);
-            Intent intent = new Intent(this, WeatherActivity.class);
-            startActivity(intent);
+            //Intent intent = WeatherActivity.newIntent(this, account);
+            //startActivity(intent);
+            startActivity(new Intent(WeatherActivity.newIntent(this, account)));
         } else {
             //User not signed in. Show sign in TextView and Button
-            Toast.makeText(this, "Sorry", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Not signed in");
+            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show();
             mSignInButton.setVisibility(View.VISIBLE);
         }
     }
 
     private void signIn() {
-        Log.d(TAG, "CODE REACHES HERE");
         Intent signInIntent = new Intent();
         signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
@@ -100,7 +97,6 @@ public class SignInActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             //Signed in successfully, show authenticated UI
             updateUI(account);
         } catch (ApiException e) {

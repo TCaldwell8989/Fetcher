@@ -1,5 +1,7 @@
 package com.tyler.weatherfetcher;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -10,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,15 +22,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.UUID;
 
 public class WeatherActivity extends AppCompatActivity {
 
     private static final String TAG = "Weather Activity";
+    private static final String EXTRA_GOOGLE_ACCOUNT =
+            "com.tyler.weatheractivity";
+
     TextView mCurrentTempTV;
     ImageView mCurrentRadarTV;
     ProgressBar mLoadingProgress;
 
     String key;
+
+    public static Intent newIntent(Context packageContext, GoogleSignInAccount account) {
+        Intent intent = new Intent(packageContext, WeatherActivity.class);
+        intent.putExtra(EXTRA_GOOGLE_ACCOUNT, account);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +113,7 @@ public class WeatherActivity extends AppCompatActivity {
 
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    Log.d(TAG, "line = " + line);
+                    //Log.d(TAG, "line = " + line);
                     builder.append(line);
                 }
 
@@ -176,7 +190,7 @@ public class WeatherActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Bitmap radarBitmap) {
             if (radarBitmap == null) {
-                Log.e(TAG, "Bitmap is null, check for erros from doInBackground");
+                Log.e(TAG, "Bitmap is null, check for errors from doInBackground");
             } else {
                 mLoadingProgress.setVisibility(ProgressBar.INVISIBLE);
                 mCurrentRadarTV.setImageBitmap(radarBitmap);
