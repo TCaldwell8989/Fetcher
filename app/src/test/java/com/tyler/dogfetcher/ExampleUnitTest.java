@@ -1,4 +1,4 @@
-package com.tyler.weatherfetcher;
+package com.tyler.dogfetcher;
 
 import org.junit.Test;
 

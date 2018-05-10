@@ -1,4 +1,4 @@
-package com.tyler.weatherfetcher;
+package com.tyler.dogfetcher;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.UUID;
 
 public class WeatherActivity extends AppCompatActivity {
 

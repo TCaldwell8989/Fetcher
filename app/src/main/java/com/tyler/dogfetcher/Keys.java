@@ -1,4 +1,4 @@
-package com.tyler.weatherfetcher;
+package com.tyler.dogfetcher;
 
 import android.content.Context;
 
@@ -25,8 +25,6 @@ public class Keys {
             return null;
         }
 
-        //TODO - how would you deal with a situation with 4 keys?
-        //TODO - how could you structure the file?
     }
 
 }

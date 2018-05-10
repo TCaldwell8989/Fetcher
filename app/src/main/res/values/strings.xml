@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">WeatherFetcher</string>
+    <string name="app_name">Dog Fetcher</string>
+    <string name="search">Search</string>
 </resources>
