@@ -33,12 +33,14 @@ import java.util.UUID;
 public class DogParkListFragment extends Fragment {
 
     private static final int DISPLAY_REQUEST_CODE = 0;
-    private static final String ARG_GOOGLE_USERNAME = "google_account";
+    private static final String ARG_GOOGLE_ACCOUNT = "google_account";
+    private static final String ARG_GOOGLE_USERNAME = "google_username";
     private static final String ARG_GOOGLE_EMAIL = "google_email";
     private static final String TAG = "DOGPARKLISTFRAG";
 
     private String username;
     private String email;
+    private GoogleSignInAccount account;
 
     private RecyclerView mDogParkRecyclerView;
     private DogParkAdapter mAdapter;
@@ -133,7 +135,7 @@ public class DogParkListFragment extends Fragment {
                 DogPark dogpark = new DogPark();
                 DogHouse.get(getActivity()).addDogPark(dogpark);
                 Intent intent = EntryFormActivity
-                        .newIntent(getActivity(), null, dogpark.getId());
+                        .newIntent(getActivity(), dogpark.getId());
                 startActivityForResult(intent, DISPLAY_REQUEST_CODE);
                 return true;
             default:
@@ -157,7 +159,7 @@ public class DogParkListFragment extends Fragment {
             mNameTextView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Intent intent = EntryFormActivity.newIntent(getActivity(), null, mDogPark.getId());
+                    Intent intent = EntryFormActivity.newIntent(getActivity(), mDogPark.getId());
                     startActivity(intent);
                     return true;
                 }
@@ -194,8 +196,6 @@ public class DogParkListFragment extends Fragment {
         public void bind(DogPark dogPark) {
             mDogPark = dogPark;
             mPhotoFile = DogHouse.get(getActivity()).getPhotoFile(dogPark);
-            if (mDogPark.getName() == null && mDogPark.getRating() == 0)
-                DogHouse.get(getActivity()).deleteDogPark(mDogPark);
             if (mPhotoFile == null || !mPhotoFile.exists()) {
                 mPhotoView.setImageResource(R.mipmap.ic_launcher);
             } else {

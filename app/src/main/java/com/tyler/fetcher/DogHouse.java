@@ -86,7 +86,7 @@ public class DogHouse {
     public DogPark getDogPark(UUID id) {
         DbCursorWrapper cursor = queryDogParks(
                 DogParkTable.Cols.UUID + " = ?",
-                new String[] { id.toString() });
+               new String[] { id.toString() });
 
         try {
             if (cursor.getCount() == 0) {

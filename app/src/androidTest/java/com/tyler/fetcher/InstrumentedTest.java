@@ -19,14 +19,13 @@ import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 
-@RunWith(AndroidJUnit4.class)
 public class InstrumentedTest {
 
     @Rule
     public ActivityTestRule<SignInActivity> mActivityTestRule = new ActivityTestRule<SignInActivity>(SignInActivity.class);
 
     @Rule
-    public ActivityTestRule<EntryFormActivity> mWeatherActivityTestRule = new ActivityTestRule<>(EntryFormActivity.class);
+    public ActivityTestRule<EntryFormActivity> mEntryFormActivityTestRule = new ActivityTestRule<>(EntryFormActivity.class);
 
     private SignInActivity mSignInActivity = null;
     private EntryFormActivity mWeatherActivity = null;
@@ -37,7 +36,7 @@ public class InstrumentedTest {
     public void setUp() throws Exception {
 
         mSignInActivity = mActivityTestRule.getActivity();
-        mWeatherActivity = mWeatherActivityTestRule.getActivity();
+        mWeatherActivity = mEntryFormActivityTestRule.getActivity();
 
     }
 
@@ -46,7 +45,7 @@ public class InstrumentedTest {
         //Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.tyler.weatherfetcher", appContext.getPackageName());
+        assertEquals("com.tyler.fetcher", appContext.getPackageName());
     }
 
     @Test
@@ -58,7 +57,7 @@ public class InstrumentedTest {
     @Test
     public void testLaunchOfSecondActivity() {
 
-        assertNotNull(mWeatherActivity.findViewById(R.id.temp_tv));
+        assertNotNull(mWeatherActivity.findViewById(R.id.name_et));
 
     }
 
