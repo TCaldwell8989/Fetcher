@@ -18,15 +18,25 @@ Step 2: Clone project from GitHub
 Step 3: Run Project (From android device plugged in/or from the emulator)
 
 (Known Bugs) Step's 4 - 5
+
 Step 4: Go here and configure a google console API for your project.
+
      4b: It'll ask for your SHA1 token from your project 
+     
      4c: Find your SHA1 token from the gradle tab on the right side of Android Studio
+     
          (Gradle(sidepanel) > Project(root) > Taks > android > signingReport
+         
      4d: Make sure your manifest has the following activity
+     
          <activity 
+         
          android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+         
          android:screenOrientation="portrait"
+         
          android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+         
      4e: Add the library/dependecy
          implementation 'com.google.android.gms:play-services-auth:15.0.1”
          
