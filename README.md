@@ -1,11 +1,13 @@
 # Fetcher
 (Android Mobile App)
 
+Lastest Update: INSTRUMENTED UNIT TESTS WORKING 5/10/18
+
 FEATURES
 
 Welcome to Fetcher, a mobile dog friendly app that will help you find the perfect spot for you and your dog.
 My app will feature a drop down menu of local dog friendly spots. Upon selecting a spot you'll be able to
-enjoy a wide variety of features including galleries, reviews, and its overall rating!!!
+enjoy a wide variety of features including galleries, reviews, and its overall rating!!! 
 
 SETUP
 
@@ -36,6 +38,7 @@ Step 6: UnitTests need the following libraries/dependecies
      6b: androidTestImplementation 'com.android.support.test:rules:1.0.2'
          androidTestImplementation 'com.android.support.test:runner:1.0.2'
          androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+     6c: INSTRUMENTED UNIT TESTS WORKING
 
 
 
