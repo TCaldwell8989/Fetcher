@@ -28,19 +28,26 @@ public class EntryFormFragment extends Fragment {
     private UUID mDogParkId;
 
     public static EntryFormFragment newInstance(UUID dog_park_Id) {
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_DOG_PARK_ID, dog_park_Id);
 
         EntryFormFragment fragment = new EntryFormFragment();
-        fragment.setArguments(args);
+
+        if (dog_park_Id != null) {
+            Bundle args = new Bundle();
+            args.putSerializable(ARG_DOG_PARK_ID, dog_park_Id);
+
+            fragment = new EntryFormFragment();
+            fragment.setArguments(args);
+        }
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mDogParkId = (UUID) getArguments().getSerializable(ARG_DOG_PARK_ID);
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.containsKey(ARG_DOG_PARK_ID)) {
+            mDogParkId = (UUID) getArguments().getSerializable(ARG_DOG_PARK_ID);
+        }
 
     }
 
@@ -49,11 +56,19 @@ public class EntryFormFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main, container, false);
 
-        mDogPark = DogHouse.get(getActivity()).getDogPark(mDogParkId);
-
-                //Get references to View components
         mNameET = (EditText) view.findViewById(R.id.name_et);
-        mNameET.setText(mDogPark.getName());
+        mLocationET = (EditText) view.findViewById(R.id.location_et);
+        mNoteET = (EditText) view.findViewById(R.id.note_et);
+        mRating = (RatingBar) view.findViewById(R.id.dog_friendly_rating_bar);
+
+        if (mDogParkId != null) {
+            mDogPark = DogHouse.get(getActivity()).getDogPark(mDogParkId);
+            mNameET.setText(mDogPark.getName());
+            mLocationET.setText(mDogPark.getLocation());
+            mNoteET.setText(mDogPark.getNote());
+            mRating.setRating(mDogPark.getRating());
+        }
+
         mNameET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -71,8 +86,6 @@ public class EntryFormFragment extends Fragment {
             }
         });
 
-        mLocationET = (EditText) view.findViewById(R.id.location_et);
-        mLocationET.setText(mDogPark.getLocation());
         mLocationET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -90,8 +103,6 @@ public class EntryFormFragment extends Fragment {
             }
         });
 
-        mNoteET = (EditText) view.findViewById(R.id.note_et);
-        mNoteET.setText(mDogPark.getNote());
         mNoteET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,8 +120,6 @@ public class EntryFormFragment extends Fragment {
             }
         });
 
-        mRating = (RatingBar) view.findViewById(R.id.dog_friendly_rating_bar);
-        mRating.setRating(mDogPark.getRating());
         mRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -128,8 +137,11 @@ public class EntryFormFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(TAG, "Dog Park Note: " + mDogPark.getNote());
-        DogHouse.get(getActivity()).updateDogPark(mDogPark);
+        if (mDogParkId != null) {
+            Log.d(TAG, "Dog Park Note: " + mDogPark.getNote());
+            DogHouse.get(getActivity()).updateDogPark(mDogPark);
+
+        }
 
     }
 
