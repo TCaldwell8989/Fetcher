@@ -41,10 +41,12 @@ Step 4: Go here and configure a google console API for your project.
          implementation 'com.google.android.gms:play-services-auth:15.0.1”
          
 Step 5: If you're using an Emulator and its still not working
+
      5b: Go into the emulator's side panel and select the three dots like (. . . )
      5c: Go to the Google Play Store and run an update (Will have you sign into Google)
      
 Step 6: UnitTests need the following libraries/dependecies
+
      6b: androidTestImplementation 'com.android.support.test:rules:1.0.2'
          androidTestImplementation 'com.android.support.test:runner:1.0.2'
          androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
