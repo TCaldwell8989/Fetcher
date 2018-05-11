@@ -1,11 +1,6 @@
 # Fetcher
 (Android Mobile App)
 
-First things first! Right click on the Res folder and add a new Android Resource Directory
-Make sure it's type is raw and name it raw. Then right click the raw directory and add a new file
-Call it keys.txt.
-
-Get an API key from https://www.wunderground.com and put your key inside the keys.txt file 
 
 Hey! Here are some screen shots of my app <3 
 
